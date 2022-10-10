@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA334E8A28E7366D00C2A480 /* SolverParametersSetup.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA334E8828E7366D00C2A480 /* SolverParametersSetup.xib */; };
+		CA334E8C28E736BB00C2A480 /* SolverParametersSetup.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA334E8B28E736BB00C2A480 /* SolverParametersSetup.mm */; };
 		CA3B4E091D526C4500C3F549 /* BoardManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CA3B4E071D526C4500C3F549 /* BoardManager.cpp */; };
 		CA3B4E0C1D53B0D500C3F549 /* BoardManagerFrontEnd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CA3B4E0A1D53B0D500C3F549 /* BoardManagerFrontEnd.cpp */; };
 		CA4C01691D4DD5700041418C /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA4C01681D4DD5700041418C /* AppDelegate.mm */; };
@@ -15,16 +17,20 @@
 		CA4C01771D4DD5700041418C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4C01751D4DD5700041418C /* MainMenu.xib */; };
 		CA5623FF1E1661F500BC5709 /* SudokuBoard.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA5623FD1E1661F500BC5709 /* SudokuBoard.mm */; };
 		CA5624001E1661F500BC5709 /* SudokuBoard.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5623FE1E1661F500BC5709 /* SudokuBoard.xib */; };
-		CA5624041E169CAC00BC5709 /* BoardDimensionsGetter.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA5624021E169CAC00BC5709 /* BoardDimensionsGetter.mm */; };
-		CA5624051E169CAC00BC5709 /* BoardDimensionsGetter.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5624031E169CAC00BC5709 /* BoardDimensionsGetter.xib */; };
+		CA5EC8BC28E93A8D0084400F /* DockMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5EC8BB28E93A8D0084400F /* DockMenu.xib */; };
 		CAA202B01E1B1F1200F91C2F /* SudokuBkgd.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAA202AF1E1B1F1200F91C2F /* SudokuBkgd.mm */; };
 		CAB74A541E26151300A7C3C3 /* HistoryStackFrontEnd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CAB74A521E26151200A7C3C3 /* HistoryStackFrontEnd.cpp */; };
 		CAB74A571E26153400A7C3C3 /* HistoryStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CAB74A551E26153400A7C3C3 /* HistoryStack.cpp */; };
 		CAC27CD91E20A6FB00434784 /* Solver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CAC27CD71E20A6FB00434784 /* Solver.cpp */; };
 		CAC27CDC1E20AAF200434784 /* BooleanVecOps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CAC27CDA1E20AAF200434784 /* BooleanVecOps.cpp */; };
+		CAE1E21D28E63D0F007379B9 /* BoardSetup.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE1E21B28E63D0F007379B9 /* BoardSetup.xib */; };
+		CAE1E21E28E63D0F007379B9 /* BoardSetup.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAE1E21C28E63D0F007379B9 /* BoardSetup.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA334E8628E7366D00C2A480 /* SolverParametersSetup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SolverParametersSetup.h; sourceTree = "<group>"; };
+		CA334E8828E7366D00C2A480 /* SolverParametersSetup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SolverParametersSetup.xib; sourceTree = "<group>"; };
+		CA334E8B28E736BB00C2A480 /* SolverParametersSetup.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SolverParametersSetup.mm; sourceTree = "<group>"; };
 		CA3B4E071D526C4500C3F549 /* BoardManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = BoardManager.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		CA3B4E081D526C4500C3F549 /* BoardManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = BoardManager.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		CA3B4E0A1D53B0D500C3F549 /* BoardManagerFrontEnd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = BoardManagerFrontEnd.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
@@ -39,9 +45,7 @@
 		CA5623FC1E1661F500BC5709 /* SudokuBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SudokuBoard.h; sourceTree = "<group>"; };
 		CA5623FD1E1661F500BC5709 /* SudokuBoard.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; lineEnding = 0; path = SudokuBoard.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		CA5623FE1E1661F500BC5709 /* SudokuBoard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SudokuBoard.xib; sourceTree = "<group>"; };
-		CA5624011E169CAC00BC5709 /* BoardDimensionsGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardDimensionsGetter.h; sourceTree = "<group>"; };
-		CA5624021E169CAC00BC5709 /* BoardDimensionsGetter.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = BoardDimensionsGetter.mm; sourceTree = "<group>"; };
-		CA5624031E169CAC00BC5709 /* BoardDimensionsGetter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoardDimensionsGetter.xib; sourceTree = "<group>"; };
+		CA5EC8BB28E93A8D0084400F /* DockMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DockMenu.xib; sourceTree = "<group>"; };
 		CAA202AE1E1B1F1200F91C2F /* SudokuBkgd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SudokuBkgd.h; sourceTree = "<group>"; };
 		CAA202AF1E1B1F1200F91C2F /* SudokuBkgd.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = SudokuBkgd.mm; sourceTree = "<group>"; };
 		CAA202B11E1B1F9900F91C2F /* SudokuConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SudokuConstants.h; sourceTree = "<group>"; };
@@ -53,6 +57,10 @@
 		CAC27CD81E20A6FB00434784 /* Solver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Solver.hpp; sourceTree = "<group>"; };
 		CAC27CDA1E20AAF200434784 /* BooleanVecOps.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BooleanVecOps.cpp; sourceTree = "<group>"; };
 		CAC27CDB1E20AAF200434784 /* BooleanVecOps.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BooleanVecOps.hpp; sourceTree = "<group>"; };
+		CAE1E21A28E63CFD007379B9 /* BoardSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardSetup.h; sourceTree = "<group>"; };
+		CAE1E21B28E63D0F007379B9 /* BoardSetup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoardSetup.xib; sourceTree = "<group>"; };
+		CAE1E21C28E63D0F007379B9 /* BoardSetup.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BoardSetup.mm; sourceTree = "<group>"; };
+		CAE1E21F28E6536F007379B9 /* SolverParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SolverParameters.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,9 +96,9 @@
 				CAA202B11E1B1F9900F91C2F /* SudokuConstants.h */,
 				CA4C01671D4DD5700041418C /* AppDelegate.h */,
 				CA4C01681D4DD5700041418C /* AppDelegate.mm */,
-				CA5624011E169CAC00BC5709 /* BoardDimensionsGetter.h */,
-				CA5624021E169CAC00BC5709 /* BoardDimensionsGetter.mm */,
-				CA5624031E169CAC00BC5709 /* BoardDimensionsGetter.xib */,
+				CAE1E21A28E63CFD007379B9 /* BoardSetup.h */,
+				CAE1E21C28E63D0F007379B9 /* BoardSetup.mm */,
+				CAE1E21B28E63D0F007379B9 /* BoardSetup.xib */,
 				CAA202AE1E1B1F1200F91C2F /* SudokuBkgd.h */,
 				CAA202AF1E1B1F1200F91C2F /* SudokuBkgd.mm */,
 				CA5623FC1E1661F500BC5709 /* SudokuBoard.h */,
@@ -106,10 +114,15 @@
 				CA3B4E071D526C4500C3F549 /* BoardManager.cpp */,
 				CAC27CDB1E20AAF200434784 /* BooleanVecOps.hpp */,
 				CAC27CDA1E20AAF200434784 /* BooleanVecOps.cpp */,
+				CAE1E21F28E6536F007379B9 /* SolverParameters.h */,
+				CA334E8628E7366D00C2A480 /* SolverParametersSetup.h */,
+				CA334E8B28E736BB00C2A480 /* SolverParametersSetup.mm */,
+				CA334E8828E7366D00C2A480 /* SolverParametersSetup.xib */,
 				CAC27CD81E20A6FB00434784 /* Solver.hpp */,
 				CAC27CD71E20A6FB00434784 /* Solver.cpp */,
 				CA4C01731D4DD5700041418C /* Assets.xcassets */,
 				CA4C01751D4DD5700041418C /* MainMenu.xib */,
+				CA5EC8BB28E93A8D0084400F /* DockMenu.xib */,
 				CA4C016A1D4DD5700041418C /* Supporting Files */,
 			);
 			path = "Sudoku Solver";
@@ -150,7 +163,7 @@
 		CA4C015C1D4DD56F0041418C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = "Loren Petrich";
 				TargetAttributes = {
 					CA4C01631D4DD5700041418C = {
@@ -160,7 +173,7 @@
 			};
 			buildConfigurationList = CA4C015F1D4DD56F0041418C /* Build configuration list for PBXProject "Sudoku Solver" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -182,8 +195,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA4C01741D4DD5700041418C /* Assets.xcassets in Resources */,
+				CA5EC8BC28E93A8D0084400F /* DockMenu.xib in Resources */,
+				CAE1E21D28E63D0F007379B9 /* BoardSetup.xib in Resources */,
 				CA5624001E1661F500BC5709 /* SudokuBoard.xib in Resources */,
-				CA5624051E169CAC00BC5709 /* BoardDimensionsGetter.xib in Resources */,
+				CA334E8A28E7366D00C2A480 /* SolverParametersSetup.xib in Resources */,
 				CA4C01771D4DD5700041418C /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,11 +212,12 @@
 			files = (
 				CA3B4E091D526C4500C3F549 /* BoardManager.cpp in Sources */,
 				CAB74A541E26151300A7C3C3 /* HistoryStackFrontEnd.cpp in Sources */,
+				CAE1E21E28E63D0F007379B9 /* BoardSetup.mm in Sources */,
 				CA4C016C1D4DD5700041418C /* main.m in Sources */,
 				CAA202B01E1B1F1200F91C2F /* SudokuBkgd.mm in Sources */,
 				CA4C01691D4DD5700041418C /* AppDelegate.mm in Sources */,
+				CA334E8C28E736BB00C2A480 /* SolverParametersSetup.mm in Sources */,
 				CA5623FF1E1661F500BC5709 /* SudokuBoard.mm in Sources */,
-				CA5624041E169CAC00BC5709 /* BoardDimensionsGetter.mm in Sources */,
 				CAC27CD91E20A6FB00434784 /* Solver.cpp in Sources */,
 				CA3B4E0C1D53B0D500C3F549 /* BoardManagerFrontEnd.cpp in Sources */,
 				CAB74A571E26153400A7C3C3 /* HistoryStack.cpp in Sources */,
@@ -246,6 +262,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -253,6 +270,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -270,7 +288,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -300,6 +318,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -307,6 +326,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -318,7 +338,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
@@ -328,7 +348,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = "Sudoku Solver/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -343,7 +365,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = "Sudoku Solver/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
