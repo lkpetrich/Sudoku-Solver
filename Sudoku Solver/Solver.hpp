@@ -10,7 +10,8 @@
 #define Solver_hpp
 
 #include "BoardManager.hpp"
+#include "SolverParameters.h"
 
-void Solve(BoardManager &Board);
+void Solve(BoardManager &Board, SolverParameters &Params);
 
 #endif /* Solver_hpp */

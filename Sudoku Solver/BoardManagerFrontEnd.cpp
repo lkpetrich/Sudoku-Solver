@@ -16,7 +16,8 @@ BoardManagerFrontEnd::BoardManagerFrontEnd()
 {
     // Create a board-manager instance
     // Use the smallest reasonable dimension
-    BoardManagerPtr = new BoardManager(1,1);
+    SolverParameters Params;
+    BoardManagerPtr = new BoardManager(1,1,Params);
 }
 
 BoardManagerFrontEnd::~BoardManagerFrontEnd()
@@ -27,14 +28,17 @@ BoardManagerFrontEnd::~BoardManagerFrontEnd()
 }
 
 
-// Set and get the dimensions
-void BoardManagerFrontEnd::SetBlockDimensions(uint BlockRows, uint BlockCols)
+// Set and get the dimensions and the solver parameters
+void BoardManagerFrontEnd::SetBlockDimensions(uint BlockRows, uint BlockCols,
+                                                SolverParameters &Params)
 {
     // Replace the board manager with a new-sized one
     BoardManager *BMP = (BoardManager *)BoardManagerPtr;
     delete BMP;
-    BoardManagerPtr = new BoardManager(BlockRows,BlockCols);
+    BoardManagerPtr = new BoardManager(BlockRows,BlockCols,Params);
 }
+
+// Get the sizes and parameters
 
 uint BoardManagerFrontEnd::GetBlockRows()
 {
@@ -60,6 +64,11 @@ uint BoardManagerFrontEnd::GetBoardSize()
     return BMP->GetBoardSize();
 }
 
+SolverParameters &BoardManagerFrontEnd::GetParams()
+{
+    BoardManager *BMP = (BoardManager *)BoardManagerPtr;
+    return BMP->GetParams();
+}
 
 // Set and get the values
 byte &BoardManagerFrontEnd::Value(uint irow, uint icol)

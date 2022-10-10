@@ -8,13 +8,17 @@
 
 #import <Cocoa/Cocoa.h>
 
+#include "SolverParameters.h"
+
 @interface SudokuBoard : NSWindowController
 
 // Needs horizontal and vertical block dimensions
 
-- (id)initWithRows:(NSUInteger)BlockRows Cols:(NSUInteger)BlockCols;
+- (id)initWithRows:(NSUInteger)BlockRows Cols:(NSUInteger)BlockCols Params:(SolverParameters)Params_;
 
-- (id)initWithRows:(NSUInteger)BlockRows Cols:(NSUInteger)BlockCols Data:(unsigned char *)BoardData;
+- (id)initWithRows:(NSUInteger)BlockRows Cols:(NSUInteger)BlockCols Params:(SolverParameters)Params_ Data:(unsigned char *)BoardData;
+
+// As it says
 
 - (SudokuBoard *)Duplicate;
 

@@ -23,7 +23,7 @@ static uint VectorSum(byte *Vec, uint IndMin, uint IndMax)
 }
 
 
-BoardManager::BoardManager(uint BlockRows_, uint BlockCols_)
+BoardManager::BoardManager(uint BlockRows_, uint BlockCols_, SolverParameters &Params_)
 {
     BlockRows = BlockRows_;
     BlockCols = BlockCols_;
@@ -38,6 +38,9 @@ BoardManager::BoardManager(uint BlockRows_, uint BlockCols_)
     uint AvailSize = (SideLength+1)*BoardSize;
     AvailVals.resize(AvailSize);
     fill(AvailVals.begin(),AvailVals.end(),1);
+    
+    // Solver parameters
+    Params = Params_;
 }
 
 
@@ -65,7 +68,7 @@ void BoardManager::SolveAndUpdate()
     // Check for changes at each iteration
     bool ContinueSolving = false;
     do {
-        Solve(*this);
+        Solve(*this, Params);
         
         // Check on whether AvailVals has changed
         ContinueSolving = !equal(AvailVals.begin(),AvailVals.end(),PrevAvailVals.begin());

@@ -31,28 +31,28 @@ static bool HidFive(byte **Avail, uint Size);
 
 static bool ItscBlkRow(BoardManager &Board);
 static bool ItscBlkCol(BoardManager &Board);
+static bool Itsc(BoardManager &Board);
 
 
-void Solve(BoardManager &Board)
+void Solve(BoardManager &Board, SolverParameters &Params)
 {
 next:
-    if (DistribRowColBlk(Board,VisOne,false)) goto next;
-    if (DistribRowColBlk(Board,HidOne)) goto next;
+    if (Params.MaxVisibleSetSize >= 1 && DistribRowColBlk(Board,VisOne,false)) goto next;
+    if (Params.MaxHiddenSetSize >= 1 && DistribRowColBlk(Board,HidOne)) goto next;
     
-    if (DistribRowColBlk(Board,VisTwo)) goto next;
-    if (DistribRowColBlk(Board,HidTwo)) goto next;
+    if (Params.MaxVisibleSetSize >= 2 && DistribRowColBlk(Board,VisTwo)) goto next;
+    if (Params.MaxHiddenSetSize >= 2 && DistribRowColBlk(Board,HidTwo)) goto next;
     
-    if (DistribRowColBlk(Board,VisThree)) goto next;
-    if (DistribRowColBlk(Board,HidThree)) goto next;
+    if (Params.MaxVisibleSetSize >= 3 && DistribRowColBlk(Board,VisThree)) goto next;
+    if (Params.MaxHiddenSetSize >= 3 && DistribRowColBlk(Board,HidThree)) goto next;
     
-    if (DistribRowColBlk(Board,VisFour)) goto next;
-    if (DistribRowColBlk(Board,HidFour)) goto next;
+    if (Params.MaxVisibleSetSize >= 4 && DistribRowColBlk(Board,VisFour)) goto next;
+    if (Params.MaxHiddenSetSize >= 4 && DistribRowColBlk(Board,HidFour)) goto next;
     
-    if (DistribRowColBlk(Board,VisFive)) goto next;
-    if (DistribRowColBlk(Board,HidFive)) goto next;
+    if (Params.MaxVisibleSetSize >= 5 && DistribRowColBlk(Board,VisFive)) goto next;
+    if (Params.MaxHiddenSetSize >= 5 && DistribRowColBlk(Board,HidFive)) goto next;
     
-    if (ItscBlkRow(Board)) goto next;
-    if (ItscBlkCol(Board)) goto next;
+    if (Params.UseIntersections && Itsc(Board)) goto next;
 }
 
 
@@ -849,6 +849,14 @@ bool ItscBlkCol(BoardManager &Board)
             }
         }
     }
+    
+    return false;
+}
+
+bool Itsc(BoardManager &Board)
+{
+    if (ItscBlkRow(Board)) return true;
+    if (ItscBlkCol(Board)) return true;
     
     return false;
 }

@@ -8,8 +8,9 @@
 
 #import "SudokuConstants.h"
 #import "AppDelegate.h"
-#import "BoardDimensionsGetter.h"
+#import "BoardSetup.h"
 #import "SudokuBoard.h"
+#import "SolverParametersSetup.h"
 
 
 bool ReadValue(FILE *f, uint &Value, uint MinVal, uint MaxVal, NSString *What)
@@ -37,7 +38,7 @@ BadValue:
     [Alert addButtonWithTitle:@"OK"];
     Alert.messageText = Msg;
     Alert.informativeText = @"Could not create a Sudoku board.";
-    Alert.alertStyle = NSCriticalAlertStyle;
+    Alert.alertStyle = NSAlertStyleCritical;
     
     [Alert runModal];
     
@@ -64,15 +65,16 @@ BadValue:
     // Make an empty board
     
     // Request the block dimensions: number of rows and columns (vertical, horizontal)
-    BoardDimensionsGetter *BDG = [[BoardDimensionsGetter alloc] init];
-    NSInteger IsOK = [NSApp runModalForWindow:BDG.window];
+    BoardSetup *BDST = [[BoardSetup alloc] init];
+    NSInteger IsOK = [NSApp runModalForWindow:BDST.window];
     if (!IsOK) return;
     
-    NSUInteger BlockRows =[BDG GetBlockRows];
-    NSUInteger BlockCols = [BDG GetBlockCols];
+    NSUInteger BlockRows = [BDST GetBlockRows];
+    NSUInteger BlockCols = [BDST GetBlockCols];
+    SolverParameters SolverParams = [BDST GetSolverParameters];
     
     // Make a board
-    SudokuBoard *Board = [[SudokuBoard alloc] initWithRows:BlockRows Cols:BlockCols];
+    SudokuBoard *Board = [[SudokuBoard alloc] initWithRows:BlockRows Cols:BlockCols Params:SolverParams];
     [Board showWindow:self];
     [WindowList addObject:Board];
 }
@@ -111,8 +113,15 @@ BadValue:
      
      fclose(f);
      
+     SolverParameters SolverParams;
+     SolverParametersSetup *SPS = [[SolverParametersSetup alloc] initWithParams:SolverParams];
+     
+     NSInteger SPIsOK = [NSApp runModalForWindow:SPS.window];
+     if (SPIsOK != 0)
+         SolverParams = [SPS GetSolverParameters];
+     
      // Make a board
-     SudokuBoard *Board = [[SudokuBoard alloc] initWithRows:BlockRows Cols:BlockCols Data:Data];
+     SudokuBoard *Board = [[SudokuBoard alloc] initWithRows:BlockRows Cols:BlockCols Params:SolverParams Data:Data];
      [Board showWindow:self];
      [WindowList addObject:Board];
      
@@ -127,7 +136,7 @@ BadValue:
     OpenDialog.allowsMultipleSelection = NO;
     
     [OpenDialog beginWithCompletionHandler:^(NSInteger Result) {
-        if (Result == NSFileHandlingPanelOKButton)
+        if (Result == NSModalResponseOK)
         {
             [self ReadFile:[[OpenDialog URLs] objectAtIndex:0]];
         }

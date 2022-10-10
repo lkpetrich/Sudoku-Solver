@@ -11,6 +11,8 @@
 #ifndef BoardManagerFrontEnd_hpp
 #define BoardManagerFrontEnd_hpp
 
+#include "SolverParameters.h"
+
 typedef unsigned int uint;
 typedef unsigned char byte;
 
@@ -23,13 +25,15 @@ public:
     BoardManagerFrontEnd();
     ~BoardManagerFrontEnd();
     
-    // Set and get the dimensions
-    void SetBlockDimensions(uint BlockRows, uint BlockCols);
+    // Set and get the dimensions and the solver parameters
+    void SetBlockDimensions(uint BlockRows, uint BlockCols, SolverParameters &Params);
     
     uint GetBlockRows();
     uint GetBlockCols();
     uint GetSideLength();
     uint GetBoardSize();
+    
+    SolverParameters &GetParams();
     
     // Set and get the values
     byte &Value(uint irow, uint icol);

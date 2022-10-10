@@ -10,6 +10,7 @@
 #import "SudokuConstants.h"
 #import "SudokuBoard.h"
 #import "SudokuBkgd.h"
+#import "SolverParametersSetup.h"
 #include "BoardManagerFrontEnd.hpp"
 #include "HistoryStackFrontEnd.hpp"
 
@@ -20,6 +21,25 @@ static BOOL GetBoolReturn(NSInvocation *Invocation)
     BOOL retcode;
     [Invocation getReturnValue:&retcode];
     return retcode;
+}
+
+// Approximate square root for the tooltips
+// to make nearly square ones
+// Rounded upward
+static uint isqrt(uint a) {
+    // Initial guess
+    uint x = (a + 1) >> 1;
+    
+    // Improve with Newton's method
+    for (uint iter=0; iter<16; iter++)
+    {
+        uint xnew = (x + a/x + 1) >> 1;
+        if (xnew == x) break;
+        x = xnew;
+    }
+    
+    // All done
+    return x;
 }
 
 @interface DummyUndoManager : NSUndoManager
@@ -64,18 +84,32 @@ static BOOL GetBoolReturn(NSInvocation *Invocation)
     
     // Kludge to get around the undo and redo menu items not being handled like the others
     DummyUndoManager *UndoManager;
+    
+    // Tooltip stuff
+    // For showing the available values with a mouseover
+    
+    // Number values for the tooltips
+    NSMutableArray<NSString *> *TooltipValues;
+    
+    // Tooltip members, for the tooltip text
+    NSMutableArray<NSString *> *TooltipMembers;
+    
+    // Tooltip final result
+    NSMutableString *TooltipString;
 }
+
+- (IBAction)ShowSolverParameters:(id)sender;
 
 @end
 
 @implementation SudokuBoard
 
-- (id)initWithRows:(NSUInteger)BlockRows Cols:(NSUInteger)BlockCols
+- (id)initWithRows:(NSUInteger)BlockRows Cols:(NSUInteger)BlockCols Params:(SolverParameters)Params
 {
     self = [super initWithWindowNibName:@"SudokuBoard"];
     
     // Transmitting the block dimensions
-    self->BMFE.SetBlockDimensions((uint)BlockRows, (uint)BlockCols);
+    self->BMFE.SetBlockDimensions((uint)BlockRows, (uint)BlockCols, Params);
     
     // Undo-manager kludge
     UndoManager = [[DummyUndoManager alloc] init];
@@ -105,9 +139,9 @@ static BOOL GetBoolReturn(NSInvocation *Invocation)
     return self;
 }
 
-- (id)initWithRows:(NSUInteger)BlockRows Cols:(NSUInteger)BlockCols Data:(unsigned char *)BoardData
+- (id)initWithRows:(NSUInteger)BlockRows Cols:(NSUInteger)BlockCols Params:(SolverParameters)Params Data:(unsigned char *)BoardData
 {
-    self = [self initWithRows:BlockRows Cols:BlockCols];
+    self = [self initWithRows:BlockRows Cols:BlockCols Params:Params];
     
     // Load its data
     BoardImport(BMFE,BoardData);
@@ -190,7 +224,23 @@ static BOOL GetBoolReturn(NSInvocation *Invocation)
     [Scroller setDocumentView:Bkgd];
     [SelfWindow setContentView:Scroller];
     [SelfWindow makeKeyAndOrderFront:nil];
-
+    
+    // Tooltip stuff
+    
+    // Number values for the tooltips
+    TooltipValues = [NSMutableArray arrayWithCapacity:(SideLen+1)];
+    
+    for (int ival=0; ival <= SideLen+1; ival++)
+        [TooltipValues addObject:[NSString stringWithFormat:@"%d", ival]];
+    
+    // Tooltip members, for the tooltip text
+    TooltipMembers = [NSMutableArray arrayWithCapacity:(SideLen)];
+    
+    // Tooltip final result
+    TooltipString = [NSMutableString stringWithCapacity:(4*SideLen)];
+    
+    // Place the tooltips in the starting board
+    [self UpdateBoard:self];
 }
 
 - (void)UpdateBoardWithCellContents:(id)sender {
@@ -226,6 +276,7 @@ static BOOL GetBoolReturn(NSInvocation *Invocation)
     uint SideLen = BMFE.GetSideLength();
     uint NumEmpty = 0, NumFull = 0;
     bool BadBoard = false;
+    
     for (int irow=0; irow<SideLen; irow++)
     {
         for (int icol=0; icol<SideLen; icol++)
@@ -239,8 +290,12 @@ static BOOL GetBoolReturn(NSInvocation *Invocation)
                 NumEmpty++;
             [Menu selectItemWithTag:Value];
             
-            // Set availability by enabling or disabling counts
+            // Start accumulating values for the tooltip
+            [TooltipMembers removeAllObjects];
+            
+            // Set availability by enabling or disabling items
             // Check on whether there are any non-blank ones available
+            // Also update the menu's tooltip to show available items
             NSUInteger NumItems = [Menu numberOfItems];
             bool BadSel = true;
             for (uint ival=0; ival<NumItems; ival++)
@@ -251,10 +306,50 @@ static BOOL GetBoolReturn(NSInvocation *Invocation)
                 {
                     bool IsAvail = BMFE.Avail(irow,icol,ItemVal);
                     Item.enabled = IsAvail;
-                    if (IsAvail) BadSel = false;
+                    if (IsAvail)
+                    {
+                        BadSel = false;
+                        [TooltipMembers addObject:TooltipValues[ItemVal]];
+                    }
                 }
              }
             if (BadSel) BadBoard = true;
+            
+            // Set up the tooltip
+            NSUInteger TMCount = [TooltipMembers count];
+            if (TMCount >= 2)
+            {
+                // Clear the tooltip string
+                [TooltipString setString:@""];
+                // Find a good row size
+                uint RowSize = isqrt((uint)TMCount);
+                // Add the members
+                // Need the indices, so can't use foreach
+                for (uint ix=0; ix<TMCount; ix++) {
+                    // Put in separator
+                    if (ix == 0) {
+                        // Beginning: no separator
+                    }
+                    else if ((ix % RowSize) == 0)
+                    {
+                        // Start a new line
+                        [TooltipString appendString:@"\n"];
+                    }
+                    else
+                    {
+                        // Space on the same line
+                        [TooltipString appendString:@" "];
+                    }
+                    // Add the value itself
+                    [TooltipString appendString:TooltipMembers[ix]];
+                }
+                Menu.toolTip = TooltipString;
+            }
+            else
+            {
+                // Blank out the tooltip
+                Menu.toolTip = nil;
+           }
         }
     }
     
@@ -278,8 +373,15 @@ static BOOL GetBoolReturn(NSInvocation *Invocation)
     byte *Data = new byte[BMFE.GetBoardSize()];
     BoardExport(BMFE,Data);
     
+    SolverParameters SolverParams = BMFE.GetParams();
+    SolverParametersSetup *SPS = [[SolverParametersSetup alloc] initWithParams:SolverParams];
+    
+    NSInteger SPIsOK = [NSApp runModalForWindow:SPS.window];
+    if (SPIsOK != 0)
+        SolverParams = [SPS GetSolverParameters];
+    
     SudokuBoard *DupBoard = [[SudokuBoard alloc] initWithRows:BMFE.GetBlockRows()
-                                                         Cols:BMFE.GetBlockCols() Data:Data];
+                                                         Cols:BMFE.GetBlockCols() Params:SolverParams Data:Data];
     
     delete []Data;
     return DupBoard;
@@ -318,7 +420,7 @@ static BOOL GetBoolReturn(NSInvocation *Invocation)
     [SaveDialog beginSheetModalForWindow:SelfWindow
                        completionHandler:^(NSInteger Result) {
         
-        if (Result == NSFileHandlingPanelOKButton)
+        if (Result == NSModalResponseOK)
         {
             [self WriteFile:[SaveDialog URL]];
         }
@@ -362,6 +464,14 @@ static BOOL GetBoolReturn(NSInvocation *Invocation)
         return [self canRedo];
     else
         return YES;
+}
+
+- (IBAction)ShowSolverParameters:(id)sender
+{
+    SolverParameters Params = BMFE.GetParams();
+    SolverParametersSetup *SPS = [[SolverParametersSetup alloc] initWithParams:Params];
+    
+    [NSApp runModalForWindow:SPS.window];
 }
 
 @end

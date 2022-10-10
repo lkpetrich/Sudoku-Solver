@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21225" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21225"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,7 +17,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="60" y="240" width="512" height="512"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1600" height="900"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="945"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="512" height="512"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,34 +29,41 @@
                     <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="VBE-Y3-GYA"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="hdJ-st-2nl"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="bNv-Hc-3h5"/>
-                    <toolbarItem implicitItemIdentifier="D366AC61-707B-4125-AF7A-D5C0FDDE3060" label="Undo" paletteLabel="Undo" tag="-1" image="Undo" id="F9f-z0-5K6">
+                    <toolbarItem implicitItemIdentifier="D366AC61-707B-4125-AF7A-D5C0FDDE3060" label="Undo" paletteLabel="Undo" toolTip="Undoes the previous action" tag="-1" image="Undo" sizingBehavior="auto" id="F9f-z0-5K6">
                         <connections>
                             <action selector="undo:" target="-2" id="uhG-EC-OwE"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="BD9B0973-E4D8-4DEA-AD29-B12F21B2B4DE" label="Redo" paletteLabel="Redo" tag="-1" image="Redo" id="3j1-bV-yqB">
+                    <toolbarItem implicitItemIdentifier="BD9B0973-E4D8-4DEA-AD29-B12F21B2B4DE" label="Redo" paletteLabel="Redo" toolTip="Redoes an undone action" tag="-1" image="Redo" sizingBehavior="auto" id="3j1-bV-yqB">
                         <connections>
                             <action selector="redo:" target="-2" id="whv-hW-1zE"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="1816FE73-FF17-43B6-9B98-D9BB32890E46" label="Duplicate" paletteLabel="Duplicate" tag="-1" image="Duplicate Board" id="cA7-M4-uiy">
+                    <toolbarItem implicitItemIdentifier="1816FE73-FF17-43B6-9B98-D9BB32890E46" label="Dup" paletteLabel="Dup" toolTip="Duplicates the current board" tag="-1" image="Duplicate Board" sizingBehavior="auto" id="cA7-M4-uiy">
                         <connections>
                             <action selector="duplicateDocument:" target="-1" id="ADl-wd-gjv"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="46A5C109-AEA4-4ECB-AABF-DAEF1E935371" label="Save" paletteLabel="Save" tag="-1" image="Save" id="IAZ-da-4NI">
+                    <toolbarItem implicitItemIdentifier="E2897B41-931D-420B-BB4B-0AA1271C35FD" label="Params" paletteLabel="Params" toolTip="Shows the solver parameters" tag="-1" image="NSAdvanced" bordered="YES" id="fZX-WF-Y8d">
+                        <size key="minSize" width="32" height="25"/>
+                        <size key="maxSize" width="32" height="25"/>
+                        <connections>
+                            <action selector="ShowSolverParameters:" target="-2" id="VSP-Qe-fRV"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="04E44325-4DCD-468F-8890-333EC845499F" label="New" paletteLabel="New" toolTip="Makes a new board" tag="-1" image="New Board" sizingBehavior="auto" id="QSB-hi-iPy">
+                        <connections>
+                            <action selector="newDocument:" target="-1" id="nWB-mI-FG3"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="46A5C109-AEA4-4ECB-AABF-DAEF1E935371" label="Save" paletteLabel="Save" toolTip="Saves the board into a file" tag="-1" image="Save" sizingBehavior="auto" id="IAZ-da-4NI">
                         <connections>
                             <action selector="saveDocument:" target="-2" id="qla-bE-qzR"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="0E03E3C6-F41D-4319-B475-27381F640641" label="Open" paletteLabel="Open" tag="-1" image="Open" id="efq-BS-6GC">
+                    <toolbarItem implicitItemIdentifier="0E03E3C6-F41D-4319-B475-27381F640641" label="Open" paletteLabel="Open" toolTip="Loads a file into a board" tag="-1" image="Open" sizingBehavior="auto" id="efq-BS-6GC">
                         <connections>
                             <action selector="openDocument:" target="-1" id="pce-Fv-fWX"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="04E44325-4DCD-468F-8890-333EC845499F" label="New" paletteLabel="New" tag="-1" image="New Board" id="QSB-hi-iPy">
-                        <connections>
-                            <action selector="newDocument:" target="-1" id="nWB-mI-FG3"/>
                         </connections>
                     </toolbarItem>
                 </allowedToolbarItems>
@@ -64,19 +71,21 @@
                     <toolbarItem reference="F9f-z0-5K6"/>
                     <toolbarItem reference="3j1-bV-yqB"/>
                     <toolbarItem reference="cA7-M4-uiy"/>
-                    <toolbarItem reference="IAZ-da-4NI"/>
+                    <toolbarItem reference="fZX-WF-Y8d"/>
                     <toolbarItem reference="QSB-hi-iPy"/>
+                    <toolbarItem reference="IAZ-da-4NI"/>
                     <toolbarItem reference="efq-BS-6GC"/>
                 </defaultToolbarItems>
             </toolbar>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="335" y="171"/>
+            <point key="canvasLocation" x="317" y="176"/>
         </window>
     </objects>
     <resources>
         <image name="Duplicate Board" width="48" height="48"/>
+        <image name="NSAdvanced" width="32" height="32"/>
         <image name="New Board" width="48" height="48"/>
         <image name="Open" width="48" height="48"/>
         <image name="Redo" width="48" height="48"/>

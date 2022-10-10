@@ -9,6 +9,8 @@
 #ifndef BoardManager_hpp
 #define BoardManager_hpp
 
+#include "SolverParameters.h"
+
 #include <vector>
 using namespace std;
 
@@ -21,16 +23,19 @@ class BoardManager
     
     vector<byte> BoardVals;
     vector<byte> AvailVals;
+    
+    SolverParameters Params;
 
 public:
     // Create with a block size that will stay fixed
-    BoardManager(uint BlockRows_, uint BlockCols_);
+    BoardManager(uint BlockRows_, uint BlockCols_, SolverParameters &Params_);
     
-    // Get the dimensions
+    // Get the dimensions and the solver parameters
     uint GetBlockRows() {return BlockRows;}
     uint GetBlockCols() {return BlockCols;}
     uint GetSideLength() {return SideLength;}
     uint GetBoardSize() {return BoardSize;}
+    SolverParameters &GetParams() {return Params;}
     
     // Set and get the values
     byte &Value(uint irow, uint icol) {return BoardVals[SideLength*irow+icol];}
